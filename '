@@ -1,0 +1,33 @@
+import socket
+
+
+class Server():
+    
+    def __init__(self,addr, port, sock=False):
+        
+
+        self.addr = addr
+        self.port = port
+
+        if sock is False:
+            self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    def create_connection(self):
+    
+        self.sock.bind(('127.0.0.1',5000))
+        self.sock.listen(1)
+        conn, address = self.sock.accept()
+        
+        return conn, address
+    
+    def start_connection(self):
+        host = self.create_connection()
+        print(host[1])
+        
+
+my_server = Server('127.0.0.1', 5000)
+my_server.start_connection()
+
+
+
+
